@@ -1,0 +1,7 @@
+name: Shattered
+version: '${project.version}'
+main: net.etum.shattered.Main
+api-version: '1.20'
+prefix: Shattered
+authors: [NadTum]
+website: https://etum.fr
