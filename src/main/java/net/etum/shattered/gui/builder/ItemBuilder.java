@@ -1,6 +1,5 @@
 package net.etum.shattered.gui.builder;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -11,7 +10,6 @@ import org.bukkit.inventory.meta.SkullMeta;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class ItemBuilder {
     private final ItemStack item;
@@ -106,13 +104,12 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder setSkullOwner(String owner) {
+    public void setSkullOwner(String owner) {
         if (item.getType() != Material.PLAYER_HEAD) {
             throw new IllegalStateException("Item is not a player head");
         }
         SkullMeta skullMeta = (SkullMeta) meta;
         skullMeta.setOwner(owner);
-        return this;
     }
 
     public ItemBuilder setCustomModelData(int data) {
