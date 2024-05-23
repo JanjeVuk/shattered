@@ -9,6 +9,7 @@ public class EventManager {
 
         PluginManager pm = main.getServer().getPluginManager();
 
+        eventsPlayer(main, pm);
 
     }
 
