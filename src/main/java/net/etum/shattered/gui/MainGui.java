@@ -20,6 +20,10 @@ public class MainGui implements Listener {
         profil.setSkullOwner(player.getName());
 
 
+
+        inv.setItem(12, profil.build());
+
+
         player.openInventory(inv.build());
     }
 }
