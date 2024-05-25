@@ -1,0 +1,10 @@
+name: Shattered
+version: '1.0-SNAPSHOT'
+main: net.etum.shattered.Main
+api-version: '1.20'
+prefix: Shattered
+authors: [NadTum]
+website: https://etum.fr
+commands:
+  menu:
+    description: permet d'ouvrir le menu principal

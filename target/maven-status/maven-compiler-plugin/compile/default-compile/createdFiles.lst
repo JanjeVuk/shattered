@@ -1,0 +1,10 @@
+net\etum\shattered\gui\MainGui.class
+net\etum\shattered\player\events\PlayerConnectionListener.class
+net\etum\shattered\gui\builder\ItemBuilder.class
+net\etum\shattered\Main.class
+net\etum\shattered\player\Knight.class
+net\etum\shattered\listeners\EventManager.class
+net\etum\shattered\player\PlayerDataManager.class
+net\etum\shattered\listeners\CommandManager.class
+net\etum\shattered\player\commands\CommandGui.class
+net\etum\shattered\gui\builder\InventoryBuilder.class
