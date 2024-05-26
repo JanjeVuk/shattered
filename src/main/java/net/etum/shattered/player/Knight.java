@@ -16,7 +16,7 @@ public class Knight {
         this.ap = 0;
         this.armor = 0;
         this.resistance = 0;
-        this.health = 100; // Valeur par défaut pour la santé
+        this.health = 20; // Valeur par défaut pour la santé
         this.mana = 50; // Valeur par défaut pour le mana
         this.experience = 0;
     }
