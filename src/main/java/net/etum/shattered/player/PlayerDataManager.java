@@ -33,6 +33,7 @@ public class PlayerDataManager {
     private static final Map<UUID, Knight> knightMap = new HashMap<>();
 
     public PlayerDataManager(Player player) {
+
         this.player = player;
         this.file = new File("plugins//" + Main.getInstance().getName() + "//data//players//" + player.getUniqueId() + ".yml");
         if (!file.exists()) {
@@ -48,6 +49,8 @@ public class PlayerDataManager {
         }
         this.config = YamlConfiguration.loadConfiguration(file);
     }
+
+
 
     public void saveConfig() {
         try {
