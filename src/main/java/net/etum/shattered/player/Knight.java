@@ -2,26 +2,22 @@ package net.etum.shattered.player;
 
 public class Knight {
 
-    private int ad; // dégât physique
-    private int ap; // dégât magique
-    private int armor; // armure qui réduit les dégâts physiques
-    private int resistance; // bouclier qui réduit les dégâts magiques
-    private int health; // points de santé
-    private int mana; // points pour utiliser des compétences
-    private int experience; // points pour déterminer le niveau du knight
+    private String pact; // Pact of the knight
 
-    // Constructeur par défaut
+    private int ad; // Physical damage
+    private int ap; // Magical damage
+    private int armor; // Armor that reduces physical damage
+    private int resistance; // Shield that reduces magical damage
+    private int health; // Health points
+    private int mana; // Points to use skills
+    private int experience; // Points to determine the level of the knight
+
+    // Default constructor
     public Knight() {
-        this.ad = 0;
-        this.ap = 0;
-        this.armor = 0;
-        this.resistance = 0;
-        this.health = 20; // Valeur par défaut pour la santé
-        this.mana = 50; // Valeur par défaut pour le mana
-        this.experience = 0;
+        this(0, 0, 0, 0, 20, 50, 0); // Calls the parameterized constructor with default values
     }
 
-    // Constructeur avec paramètres
+    // Parameterized constructor
     public Knight(int ad, int ap, int armor, int resistance, int health, int mana, int experience) {
         this.ad = ad;
         this.ap = ap;
@@ -32,7 +28,28 @@ public class Knight {
         this.experience = experience;
     }
 
-    // Getters et Setters
+    // Constructor with pact
+    public Knight(String pact, int ad, int ap, int armor, int resistance, int health, int mana, int experience) {
+        this.ad = ad;
+        this.ap = ap;
+        this.armor = armor;
+        this.resistance = resistance;
+        this.health = health;
+        this.mana = mana;
+        this.experience = experience;
+        this.pact = pact;
+    }
+
+    // Getter and Setter for pact
+    public String getPact() {
+        return pact;
+    }
+
+    public void setPact(String pact) {
+        this.pact = pact;
+    }
+
+    // Getter and Setter for ad (physical damage)
     public int getAd() {
         return ad;
     }
@@ -41,6 +58,7 @@ public class Knight {
         this.ad = ad;
     }
 
+    // Getter and Setter for ap (magical damage)
     public int getAp() {
         return ap;
     }
@@ -49,6 +67,7 @@ public class Knight {
         this.ap = ap;
     }
 
+    // Getter and Setter for armor
     public int getArmor() {
         return armor;
     }
@@ -57,6 +76,7 @@ public class Knight {
         this.armor = armor;
     }
 
+    // Getter and Setter for resistance
     public int getResistance() {
         return resistance;
     }
@@ -65,6 +85,7 @@ public class Knight {
         this.resistance = resistance;
     }
 
+    // Getter and Setter for health
     public int getHealth() {
         return health;
     }
@@ -73,6 +94,7 @@ public class Knight {
         this.health = health;
     }
 
+    // Getter and Setter for mana
     public int getMana() {
         return mana;
     }
@@ -81,6 +103,7 @@ public class Knight {
         this.mana = mana;
     }
 
+    // Getter and Setter for experience
     public int getExperience() {
         return experience;
     }
@@ -89,17 +112,16 @@ public class Knight {
         this.experience = experience;
     }
 
-    // Méthode pour afficher les statistiques du knight
+    // Method to display the knight's statistics
     public void displayStats() {
-        System.out.println("Statistiques du Knight :");
-        System.out.println("AD (dégât physique) : " + ad);
-        System.out.println("AP (dégât magique) : " + ap);
-        System.out.println("Armure : " + armor);
-        System.out.println("Résistance : " + resistance);
-        System.out.println("Vie : " + health);
-        System.out.println("Mana : " + mana);
-        System.out.println("Expérience : " + experience);
+        System.out.println("Knight Statistics:");
+        System.out.println("Physical Damage (AD): " + ad);
+        System.out.println("Magical Damage (AP): " + ap);
+        System.out.println("Armor: " + armor);
+        System.out.println("Resistance: " + resistance);
+        System.out.println("Health: " + health);
+        System.out.println("Mana: " + mana);
+        System.out.println("Experience: " + experience);
+        System.out.println("Pact: " + pact);
     }
-
-
 }
