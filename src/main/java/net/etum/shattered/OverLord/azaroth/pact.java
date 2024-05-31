@@ -15,7 +15,7 @@ public class pact {
      * - Chaque attaque automatique du chevalier ajoute une pile.
      * - À chaque 5 piles accumulées, le chevalier peut activer Break Deff.
      * - Lors de l'activation, la prochaine attaque automatique du chevalier ignore 15% de l'armure de la cible.
-     * - La réduction d'armure dure 5 secondes.
+     * - Break Deff peut durer 5 secondes.
      * - Si l'effet expire avant d'être utilisé, la compétence n'est plus utilisable
      *
      * Cooldown : 8 secondes
