@@ -1,63 +1,29 @@
 package net.etum.shattered.OverLord.azaroth;
 
-/**
- * La classe Pact représente le pacte avec Azaroth, l'Overlord de la colère.
- * Ce pacte permet au chevalier de devenir un bruiser, efficace contre les tanks
- * et lors de longs combats rapprochés.
+
+/*
+Azaroth, l'Overlord de l'Envie, règne dans les sombres profondeurs des abysses, un royaume où le chaos a laissé des cicatrices indélébiles.
+Les lieux qu'il habite sont des terres désolées, marquées par la destruction et le désespoir, où chaque ombre semble murmurer les secrets des âmes perdues.
+
+La puissance d'Azaroth est une force redoutable, se manifestant par la capacité de dévorer l'esprit et les désirs des êtres vivants.
+Il s'insinue dans les pensées les plus intimes, faisant naître des envies insatiables et des ambitions dévorantes.
+Ceux qui croisent son chemin se trouvent consumés par des désirs qui ne peuvent jamais être assouvis,
+leur volonté et leur identité se désintégrant lentement sous son influence maléfique.
+
+Dans son domaine, les ruines témoignent des batailles titanesques et des âmes brisées, chaque pierre portant les échos des cris de ceux qui ont succombé à ses pouvoirs.
+Azaroth ne se contente pas de conquérir des royaumes physiques; il s'infiltre dans le cœur même des mortels,
+transformant leur ambition en un instrument de leur propre destruction.
+
+Les légendes racontent que pour affronter Azaroth, il ne suffit pas d'avoir une force brute ou une magie puissante.
+Seuls ceux qui ont une maîtrise absolue de leurs propres désirs et une volonté inébranlable peuvent espérer résister à son influence.
+Mais même les plus vaillants héros trouvent souvent leur fin dans les abysses, leurs esprits devenant des marionnettes sous le contrôle de l'Overlord de l'Envie,
+ajoutant à l'armée de serviteurs qui alimentent son règne de terreur éternelle.
  */
 
 public class pact {
 
-    /**
-     * Compétence 1 : Break Deff
-     *
-     * Mécanique :
-     * - Chaque attaque automatique du chevalier ajoute une pile.
-     * - À chaque 5 piles accumulées, le chevalier peut activer Break Deff.
-     * - Lors de l'activation, la prochaine attaque automatique du chevalier ignore 15% de l'armure de la cible.
-     * - Break Deff peut durer 5 secondes.
-     * - Si l'effet expire avant d'être utilisé, la compétence n'est plus utilisable
-     *
-     * Cooldown : 8 secondes
-     * Coût en mana : 50
-     */
 
-    /**
-     * Compétence 2 : Blood Rage
-     *
-     * Mécanique :
-     * - Lors de l'activation de cette capacité, le bruiser regagne des points de vie proportionnellement aux dégâts bruts infligés.
-     * - Cette capacité augmente les dégâts bruts infligés de 5%.
-     * - Si la cible est sous l'effet de Break Deff, l'augmentation des dégâts passe à 10%.
-     *
-     * Durée : 10 secondes
-     * Cooldown : 20 secondes
-     * Coût en mana : 80
-     */
 
-    /**
-     * Compétence 3 : Unrelenting Fury
-     *
-     * Mécanique :
-     * - Lorsqu'un ennemi atteint 5 piles de Break Deff, le chevalier peut activer Unrelenting Fury.
-     * - Lors de l'activation, la prochaine attaque automatique du chevalier inflige des dégâts bruts supplémentaires égaux à 20% de l'attaque de base.
-     * - Si Blood Rage est actif, les dégâts bruts supplémentaires sont augmentés à 30%.
-     *
-     * Cooldown : 12 secondes
-     * Coût en mana : 60
-     */
 
-    /**
-     * Compétence 4 : Extension du territoire, Sovereign Wrath
-     *
-     * Mécanique :
-     * - Lorsque le domaine est activé, l'armure et la résistance magique sont réduites à néant pour le bruiser et l'ennemi.
-     * - Les dégâts infligés par le bruiser sont transformés en dégâts bruts, les attaques peuvent critiquer.
-     * - La compétence Blood Rage est en permanence activée.
-     * - Chaque coup critique réduit le temps de recharge de Break Deff et Unrelenting Fury de 1 seconde.
-     *
-     * Durée : 15 secondes
-     * Cooldown : 90 secondes
-     * Coût en mana : 150
-     */
+
 }
