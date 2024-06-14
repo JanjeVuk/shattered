@@ -1,10 +1,7 @@
 package net.etum.shattered.player;
 
-import net.etum.shattered.OverLord.PacteBuilder;
-
 public class Knight {
 
-    private PacteBuilder pact; // Pact of the knight
 
     private int ad; // Physical damage
     private int ap; // Magical damage
@@ -30,26 +27,7 @@ public class Knight {
         this.experience = experience;
     }
 
-    // Constructor with pact
-    public Knight(PacteBuilder pact, int ad, int ap, int armor, int resistance, int health, int mana, int experience) {
-        this.ad = ad;
-        this.ap = ap;
-        this.armor = armor;
-        this.resistance = resistance;
-        this.health = health;
-        this.mana = mana;
-        this.experience = experience;
-        this.pact = pact;
-    }
 
-    // Getter and Setter for pact
-    public PacteBuilder getPact() {
-        return pact;
-    }
-
-    public void setPact(PacteBuilder pact) {
-        this.pact = pact;
-    }
 
     // Getter and Setter for ad (physical damage)
     public int getAd() {
@@ -124,6 +102,5 @@ public class Knight {
         System.out.println("Health: " + health);
         System.out.println("Mana: " + mana);
         System.out.println("Experience: " + experience);
-        System.out.println("Pact: " + pact);
     }
 }
