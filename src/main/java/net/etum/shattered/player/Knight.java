@@ -28,7 +28,6 @@ public class Knight {
     }
 
 
-
     // Getter and Setter for ad (physical damage)
     public int getAd() {
         return ad;
