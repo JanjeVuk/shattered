@@ -8,6 +8,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 
+
+
     // Singleton instance of the plugin
     private static Main instance;
 
