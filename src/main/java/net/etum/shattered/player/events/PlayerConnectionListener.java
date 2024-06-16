@@ -1,5 +1,6 @@
 package net.etum.shattered.player.events;
 
+import net.etum.shattered.builder.DamageSource;
 import net.etum.shattered.player.PlayerDataManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +16,7 @@ public class PlayerConnectionListener implements Listener {
         Player player = event.getPlayer();
         PlayerDataManager playerDataManager = new PlayerDataManager(player);
         playerDataManager.loadConfig();
+
     }
 
     @EventHandler
