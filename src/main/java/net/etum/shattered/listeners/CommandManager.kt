@@ -1,18 +1,17 @@
-package net.etum.shattered.listeners;
+package net.etum.shattered.listeners
 
-import net.etum.shattered.Main;
-import net.etum.shattered.player.commands.CommandGui;
+import net.etum.shattered.Main
+import net.etum.shattered.player.commands.CommandGui
+import java.util.*
 
-import java.util.Objects;
-
-public class CommandManager {
-    public CommandManager(Main main) {
-
-        commandsGui(main);
-
+class CommandManager(main: Main) {
+    init {
+        commandsGui(main)
     }
 
-    private static void commandsGui(Main main){
-        Objects.requireNonNull(main.getCommand("menu")).setExecutor(new CommandGui());
+    companion object {
+        private fun commandsGui(main: Main) {
+            main.getCommand("menu")?.setExecutor(CommandGui())
+        }
     }
 }

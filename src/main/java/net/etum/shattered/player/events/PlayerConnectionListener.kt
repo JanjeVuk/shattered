@@ -1,29 +1,25 @@
-package net.etum.shattered.player.events;
+package net.etum.shattered.player.events
 
-import net.etum.shattered.builder.DamageSource;
-import net.etum.shattered.player.PlayerDataManager;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.jetbrains.annotations.NotNull;
+import net.etum.shattered.player.PlayerDataManager
+import net.etum.shattered.player.PlayerDataManager.Companion.allKnights
+import net.etum.shattered.player.PlayerDataManager.Companion.saveKnight
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
+import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.event.player.PlayerQuitEvent
 
-public class PlayerConnectionListener implements Listener {
-
+class PlayerConnectionListener : Listener {
     @EventHandler
-    public void onPlayerJoin(@NotNull PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        PlayerDataManager playerDataManager = new PlayerDataManager(player);
-        playerDataManager.loadConfig();
-
+    fun onPlayerJoin(event: PlayerJoinEvent) {
+        val player = event.player
+        val playerDataManager = PlayerDataManager(player)
+        playerDataManager.loadConfig()
     }
 
     @EventHandler
-    public void onPlayerQuit(@NotNull PlayerQuitEvent event) {
-        Player player = event.getPlayer();
-        PlayerDataManager.saveKnight(player);
-        PlayerDataManager.getAllKnights().remove(player.getUniqueId());
+    fun onPlayerQuit(event: PlayerQuitEvent) {
+        val player = event.player
+        saveKnight(player)
+        PlayerDataManager.knightMap.remove(player.uniqueId)
     }
-
 }

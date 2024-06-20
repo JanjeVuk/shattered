@@ -1,4 +1,3 @@
-package net.etum.shattered.mobs;
+package net.etum.shattered.mobs
 
-public class TideZombie {
-}
+class TideZombie

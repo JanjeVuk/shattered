@@ -1,26 +1,24 @@
-package net.etum.shattered.listeners;
+package net.etum.shattered.listeners
 
-import net.etum.shattered.Main;
-import net.etum.shattered.gui.MainGui;
-import net.etum.shattered.player.events.PlayerConnectionListener;
-import org.bukkit.plugin.PluginManager;
+import net.etum.shattered.Main
+import net.etum.shattered.gui.MainGui
+import net.etum.shattered.player.events.PlayerConnectionListener
+import org.bukkit.plugin.PluginManager
 
-public class EventManager {
-    public EventManager(Main main) {
+class EventManager(main: Main) {
+    init {
+        val pm = main.server.pluginManager
 
-        PluginManager pm = main.getServer().getPluginManager();
-
-        eventsPlayer(main, pm);
-        eventsGui(main, pm);
-
+        eventsPlayer(main, pm)
+        eventsGui(main, pm)
     }
 
 
-    private void eventsPlayer(Main main, PluginManager pm){
-        pm.registerEvents(new PlayerConnectionListener(), main);
+    private fun eventsPlayer(main: Main, pm: PluginManager) {
+        pm.registerEvents(PlayerConnectionListener(), main)
     }
 
-    private void eventsGui(Main main, PluginManager pm){
-        pm.registerEvents(new MainGui(), main);
+    private fun eventsGui(main: Main, pm: PluginManager) {
+        pm.registerEvents(MainGui(), main)
     }
 }

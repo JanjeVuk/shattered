@@ -1,82 +1,64 @@
-package net.etum.shattered.builder;
+package net.etum.shattered.builder
 
-import java.io.Serializable;
-import java.util.Objects;
+import java.io.Serializable
+import java.util.*
 
-public class DamageSource implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    public enum DamageType {
+class DamageSource(type: DamageType?, source: String?) : Serializable {
+    enum class DamageType {
         PHYSICAL,
         FIRE,
         POISON,
         THUNDER,
-        MAGIC,
-        // Ajoutez d'autres types de dégâts si nécessaire
+        MAGIC,  // Ajoutez d'autres types de dégâts si nécessaire
     }
 
-    private final DamageType type;
-    private final String source;
+    private val type: DamageType
+    private val source: String
 
-    public DamageSource(DamageType type, String source) {
-        if (type == null || source == null || source.isEmpty()) {
-            throw new IllegalArgumentException("Type and source cannot be null or empty");
-        }
-        this.type = type;
-        this.source = source;
+    init {
+        require(!(type == null || source.isNullOrEmpty())) { "Type and source cannot be null or empty" }
+        this.type = type
+        this.source = source
     }
 
-    public DamageType getType() {
-        return type;
+    val isFire: Boolean
+        get() = this.type == DamageType.FIRE
+
+    val isPhysical: Boolean
+        get() = this.type == DamageType.PHYSICAL
+
+    val isPoison: Boolean
+        get() = this.type == DamageType.POISON
+
+    val isMagic: Boolean
+        get() = this.type == DamageType.MAGIC
+
+    val isThunder: Boolean
+        get() = this.type == DamageType.THUNDER
+
+    fun isDamageType(damageType: DamageType): Boolean {
+        return this.type == damageType
     }
 
-    public String getSource() {
-        return source;
-    }
-
-    public boolean isFire() {
-        return this.type == DamageType.FIRE;
-    }
-
-    public boolean isPhysical() {
-        return this.type == DamageType.PHYSICAL;
-    }
-
-    public boolean isPoison() {
-        return this.type == DamageType.POISON;
-    }
-
-    public boolean isMagic() {
-        return this.type == DamageType.MAGIC;
-    }
-
-    public boolean isThunder() {
-        return this.type == DamageType.THUNDER;
-    }
-
-    public boolean isDamageType(DamageType damageType) {
-        return this.type == damageType;
-    }
-
-    @Override
-    public String toString() {
+    override fun toString(): String {
         return "DamageSource{" +
                 "type=" + type +
                 ", source='" + source + '\'' +
-                '}';
+                '}'
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DamageSource that = (DamageSource) o;
-        return type == that.type && source.equals(that.source);
+    override fun equals(o: Any?): Boolean {
+        if (this === o) return true
+        if (o == null || javaClass != o.javaClass) return false
+        val that = o as DamageSource
+        return type == that.type && source == that.source
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(type, source);
+    override fun hashCode(): Int {
+        return Objects.hash(type, source)
+    }
+
+    companion object {
+        private const val serialVersionUID = 1L
     }
 }

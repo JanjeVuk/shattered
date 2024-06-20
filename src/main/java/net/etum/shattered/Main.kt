@@ -1,38 +1,32 @@
-package net.etum.shattered;
+package net.etum.shattered
+
+import net.etum.shattered.listeners.CommandManager
+import net.etum.shattered.listeners.EventManager
+import org.bukkit.plugin.java.JavaPlugin
 
 
-import net.etum.shattered.listeners.CommandManager;
-import net.etum.shattered.listeners.EventManager;
-import org.bukkit.plugin.java.JavaPlugin;
-
-
-public final class Main extends JavaPlugin {
-
-
-
-    // Singleton instance of the plugin
-    private static Main instance;
-
-    @Override
-    public void onEnable() {
-        instance = this;
+class Main : JavaPlugin() {
+    override fun onEnable() {
+        instance = this
 
         // Initialize command manager
-        new CommandManager(this);
+        CommandManager(this)
 
         // Initialize event manager
-        new EventManager(this);
+        EventManager(this)
 
-        getLogger().info(getInstance().getName() + " has been enabled!");
+        logger.info(instance!!.name + " has been enabled!")
     }
 
 
-    @Override
-    public void onDisable() {
-        getLogger().info(getInstance().getName() + " has been disabled!");
+    override fun onDisable() {
+        logger.info(instance!!.name + " has been disabled!")
     }
 
-    public static Main getInstance() {
-        return instance;
+    companion object {
+        // Singleton instance of the plugin
+        @JvmStatic
+        var instance: Main? = null
+            private set
     }
 }
