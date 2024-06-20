@@ -26,7 +26,7 @@ class Mirlky(
     var zoneRadius: Int
 ) : Listener {
 
-    var armor: Int = getArmorValueForLevel(level)
+    private var armor: Int = getArmorValueForLevel(level)
     private var spider: Spider? = null
     private val random = Random()
     private val customName = "Mirlky Lvl $level"
