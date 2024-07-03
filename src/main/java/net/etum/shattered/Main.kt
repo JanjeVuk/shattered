@@ -4,7 +4,6 @@ import net.etum.shattered.listeners.CommandManager
 import net.etum.shattered.listeners.EventManager
 import org.bukkit.plugin.java.JavaPlugin
 
-
 class Main : JavaPlugin() {
     override fun onEnable() {
         instance = this

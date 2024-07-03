@@ -18,6 +18,19 @@ import org.bukkit.potion.PotionEffectType
 import org.bukkit.scheduler.BukkitRunnable
 import java.util.*
 
+/**
+ * Represents a Mirlky entity.
+ * Mirlkies are spiders with customizable health, level, and spawn location.
+ * They have special abilities like spawning spiders and applying potion effects.
+ * Mirlkies drop custom loot when killed.
+ *
+ * @property groupId The group ID this Mirlky belongs to.
+ * @property health The current health of the Mirlky.
+ * @property level The current level of the Mirlky.
+ * @property spawnLocation The location where the Mirlky was spawned.
+ * @property zoneRadius The radius of the zone where the Mirlky can move.
+ * @constructor Creates a Mirlky with the specified properties.
+ */
 class Mirlky(
     var groupId: Int,
     private var health: Int,
@@ -26,9 +39,28 @@ class Mirlky(
     var zoneRadius: Int
 ) : Listener {
 
+    /**
+     * Holds the armor value for the specified level.
+     *
+     * @param level The level of the armor.
+     * @return The armor value based on the level.
+     */
     private var armor: Int = getArmorValueForLevel(level)
+    /**
+     * Represents a spider.
+     *
+     * @property spider The spider object.
+     */
     private var spider: Spider? = null
+    /**
+     * A private variable representing an instance of the random number generator.
+     */
     private val random = Random()
+    /**
+     * Contains the custom name based on the level.
+     *
+     * @property customName The custom name representing the level.
+     */
     private val customName = "Mirlky Lvl $level"
 
     init {
@@ -36,6 +68,12 @@ class Mirlky(
         startWaterCheckTask()
     }
 
+    /**
+     * Spawns a spider entity at the specified location.
+     * The spawned spider will have the same health as the entity that calls this method.
+     * The spider will have a custom name and the name will be visible.
+     * The spider will also have an event listener registered to it.
+     */
     private fun spawnSpider() {
         spider = (spawnLocation.world?.spawnEntity(spawnLocation, EntityType.SPIDER) as? Spider)?.apply {
             getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = health
@@ -47,6 +85,13 @@ class Mirlky(
         }
     }
 
+    /**
+     * Starts a periodic task to check for water and apply effects to the spider entity.
+     * The task runs every 20 ticks (1 second).
+     * If the spider is dead, the task is cancelled.
+     * If the spider is in water (block.isLiquid), it adds the invisibility potion effect.
+     * If the spider is not in water, it removes the invisibility potion effect.
+     */
     private fun startWaterCheckTask() {
         object : BukkitRunnable() {
             override fun run() {
@@ -63,24 +108,52 @@ class Mirlky(
         }.runTaskTimer(JavaPlugin.getProvidingPlugin(javaClass), 0L, 20L)
     }
 
+    /**
+     * Returns the armor value based on the specified level.
+     *
+     * @param level the level of the armor
+     * @return the calculated armor value
+     */
     private fun getArmorValueForLevel(level: Int): Int {
         return (2.0 + (level * 0.5)).toInt()
     }
 
+    /**
+     * Moves the spider to the specified location.
+     * If the spider is not dead and the location is not null,
+     * the spider will be teleported to the location.
+     *
+     * @param location the new location to move the spider to
+     */
     fun moveTo(location: Location?) {
         location?.let {
             spider?.takeIf { !it.isDead }?.teleport(it)
         }
     }
 
+    /**
+     * Removes the spider object. If the spider object is not null,
+     * it will be removed by calling its `remove()` method.
+     */
     fun remove() {
         spider?.remove()
     }
 
+    /**
+     * Determines if a given location is within the zone.
+     *
+     * @param location The location to check.
+     * @return `true` if the location is within the zone, `false` otherwise.
+     */
     fun isInZone(location: Location): Boolean {
         return location.distance(spawnLocation) <= zoneRadius
     }
 
+    /**
+     * Handles the event when an entity dies.
+     *
+     * @param event The EntityDeathEvent triggered when an entity dies.
+     */
     @EventHandler
     fun onEntityDeath(event: EntityDeathEvent) {
         if (event.entity is Spider && event.entity.customName?.contains("Mirlky") == true) {
@@ -106,6 +179,11 @@ class Mirlky(
         }
     }
 
+    /**
+     * Called when an entity is damaged by another entity.
+     *
+     * @param event The EntityDamageByEntityEvent representing the event.
+     */
     @EventHandler
     fun onEntityDamageByEntity(event: EntityDamageByEntityEvent) {
         if (event.damager is Spider && event.damager.customName?.contains("Mirlky") == true && event.entity is Player) {
@@ -117,28 +195,60 @@ class Mirlky(
         }
     }
 
+    /**
+     * Calculates the venom activation chance based on the given level.
+     *
+     * @param level the level of the venom (must be a positive integer)
+     * @return the venom activation chance as a Double value
+     */
     private fun getVenomActivationChance(level: Int): Double {
         return 0.1 + (level * 0.02)
     }
 
+    /**
+     * Calculates the duration of the venom effect based on the given level.
+     *
+     * @param level The level of the venom effect.
+     * @return The duration of the venom effect in seconds.
+     */
     private fun getVenomDuration(level: Int): Int {
         return 40 + (level * 2)
     }
 
+    /**
+     * Returns the current health value.
+     *
+     * @return the health value as an integer.
+     */
     fun getHealth(): Int {
         return health
     }
 
+    /**
+     * Sets the health value of the spider.
+     *
+     * @param health the new health value of the spider
+     */
     fun setHealth(health: Int) {
         this.health = health
         spider?.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = health.toDouble()
         spider?.health = health.toDouble()
     }
 
+    /**
+     * Returns the level.
+     *
+     * @return the level.
+     */
     fun getLevel(): Int {
         return level
     }
 
+    /**
+     * Sets the level for the character and updates the armor value and custom name accordingly.
+     *
+     * @param level the new level for the character
+     */
     fun setLevel(level: Int) {
         this.level = level
         this.armor = getArmorValueForLevel(level)

@@ -57,19 +57,19 @@ class PlayerDataManager(private val player: Player) {
 
     private fun saveKnightInConfig(knight: Knight) {
         config[KEY_KNIGHT + KEY_AD] =
-            knight.ad
+            knight.getAD()
         config[KEY_KNIGHT + KEY_AP] =
-            knight.ap
+            knight.getAP()
         config[KEY_KNIGHT + KEY_ARMOR] =
-            knight.armor
+            knight.getArmor()
         config[KEY_KNIGHT + KEY_RESISTANCE] =
-            knight.resistance
+            knight.getResistance()
         config[KEY_KNIGHT + KEY_HEALTH] =
-            knight.health
+            knight.getHealth()
         config[KEY_KNIGHT + KEY_MANA] =
-            knight.mana
+            knight.getMana()
         config[KEY_KNIGHT + KEY_EXPERIENCE] =
-            knight.experience
+            knight.getExperience()
         saveConfig()
     }
 
