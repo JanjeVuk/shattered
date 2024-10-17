@@ -16,6 +16,8 @@ public class ConnexionManager implements Listener {
         Player player = event.getPlayer();
 
         PlayerDataManager.loadData(player);
+
+        player.sendMessage("Vous êtes " + PlayerDataManager.getPlayerData(player).getClassType().toString());
     }
 
     @EventHandler

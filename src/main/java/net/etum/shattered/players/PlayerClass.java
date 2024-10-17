@@ -6,9 +6,11 @@ import org.jetbrains.annotations.NotNull;
 
 public class PlayerClass {
 
+
     protected final Player player;
     protected final Experience experience;
     protected final Money money;
+    protected ClassType classType;
 
     public enum ClassType {
         MAGE,
@@ -26,7 +28,6 @@ public class PlayerClass {
         }
     }
 
-    private final ClassType classType;
 
     public PlayerClass(Player player, int initialExp, int initialMoney, ClassType classType) {
         this.player = player;
@@ -35,12 +36,14 @@ public class PlayerClass {
         this.classType = classType;
     }
 
-    public PlayerClass(Player player, ClassType classType) {
-        this(player, 0, 50, classType); // Valeurs par défaut pour exp et argent
-    }
+
 
     public ClassType getClassType() {
         return classType;
+    }
+
+    public void setClassType(ClassType classType) {
+        this.classType = classType;
     }
 
     // Méthodes communes pour l'expérience
@@ -85,14 +88,18 @@ public class PlayerClass {
         money.remove(amount);
     }
 
+
+    // Méthodes de chargement et sauvegarde des données de la classe
     public void loadSubclassData(@NotNull YamlConfiguration config) {
         setExp(config.getInt("exp", 0)); // Charge l'expérience
         setMoney(config.getInt("money", 0)); // Charge l'argent
+        setClassType(ClassType.NONE); // Charge le type de classe
     }
 
     public void saveSubclassData(@NotNull YamlConfiguration config) {
         config.set("exp", getExp()); // Sauvegarde l'expérience
         config.set("money", getMoney()); // Sauvegarde l'argent
+        config.set("classe", getClassType().toString()); // Sauvegarde le type de classe
     }
 
     // Classe Experience

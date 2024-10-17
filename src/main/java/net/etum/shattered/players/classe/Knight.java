@@ -1,5 +1,6 @@
 package net.etum.shattered.players.classe;
 
+import net.etum.shattered.Main;
 import net.etum.shattered.players.PlayerClass;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -20,6 +21,16 @@ public class Knight extends PlayerClass {
         super.loadSubclassData(config);
 
         // Charge les attributs de la classe
+        Main.getPlugin().getLogger().info("Charging knight data for player " + player.getName());
+        setClassType(ClassType.KNIGHT);
+    }
+
+    @Override
+    public void saveSubclassData(@NotNull YamlConfiguration config) {
+        super.saveSubclassData(config);
+
+        // Sauvegarde les attributs de la classe
+        Main.getPlugin().getLogger().info("Saving knight data for player " + player.getName());
     }
 
 }

@@ -1,0 +1,14 @@
+net\etum\shattered\players\classe\Rogue.class
+net\etum\shattered\players\manager\PlayerDataManager.class
+net\etum\shattered\players\PlayerClass.class
+net\etum\shattered\manager\ConnexionManager.class
+net\etum\shattered\players\classe\Knight.class
+net\etum\shattered\players\manager\PlayerDataManager$1.class
+net\etum\shattered\players\PlayerClass$Experience.class
+net\etum\shattered\players\PlayerClass$ClassType.class
+net\etum\shattered\listeners\Commands.class
+net\etum\shattered\Main.class
+net\etum\shattered\players\classe\Mage.class
+net\etum\shattered\listeners\Events.class
+net\etum\shattered\players\classe\Obscurus.class
+net\etum\shattered\players\PlayerClass$Money.class
