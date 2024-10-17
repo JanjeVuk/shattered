@@ -1,27 +1,55 @@
 package net.etum.shattered.players;
 
-import org.bukkit.Location;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.attribute.Attribute;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
-public abstract class PlayerClass {
+public class PlayerClass {
 
     protected final Player player;
     protected final Experience experience;
     protected final Money money;
 
+    public enum ClassType {
+        MAGE,
+        KNIGHT,
+        ROGUE,
+        OBSCURUS,
+        NONE;
 
-    public PlayerClass(Player player, int initialExp, int initialMoney) {
+        public static ClassType fromString(String classType) {
+            try {
+                return ClassType.valueOf(classType.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return NONE;
+            }
+        }
+    }
+
+    private final ClassType classType;
+
+    public PlayerClass(Player player, int initialExp, int initialMoney, ClassType classType) {
         this.player = player;
         this.experience = new Experience(initialExp);
         this.money = new Money(initialMoney);
+        this.classType = classType;
     }
 
-    // Common methods for experience
+    public PlayerClass(Player player, ClassType classType) {
+        this(player, 0, 50, classType); // Valeurs par défaut pour exp et argent
+    }
+
+    public ClassType getClassType() {
+        return classType;
+    }
+
+    // Méthodes communes pour l'expérience
     public int getExp() {
         return experience.getAmount();
+    }
+
+    public void setExp(int exp) {
+        experience.setAmount(exp);
     }
 
     public void addExp(int exp) {
@@ -32,13 +60,21 @@ public abstract class PlayerClass {
         return experience.getLevel();
     }
 
+    public void setLevel(int level) {
+        experience.setLevel(level);
+    }
+
     public int getExpToNextLevel() {
         return experience.getExpToNextLevel();
     }
 
-    // Common methods for money
+    // Méthodes communes pour l'argent
     public int getMoney() {
         return money.getAmount();
+    }
+
+    public void setMoney(int amount) {
+        money.setAmount(amount);
     }
 
     public void addMoney(int amount) {
@@ -49,30 +85,15 @@ public abstract class PlayerClass {
         money.remove(amount);
     }
 
-    // Common methods for health
-    public double getHealth() {
-        return player.getHealth();
+    public void loadSubclassData(@NotNull YamlConfiguration config) {
+        setExp(config.getInt("exp", 0)); // Charge l'expérience
+        setMoney(config.getInt("money", 0)); // Charge l'argent
     }
 
-    public void setHealth(double health) {
-        double maxHealth = Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue();
-        player.setHealth(Math.min(health, maxHealth));
+    public void saveSubclassData(@NotNull YamlConfiguration config) {
+        config.set("exp", getExp()); // Sauvegarde l'expérience
+        config.set("money", getMoney()); // Sauvegarde l'argent
     }
-
-    public void increaseMaxHealth(double amount) {
-        double currentMaxHealth = Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getBaseValue();
-        Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(currentMaxHealth + amount);
-    }
-
-    // Common methods for armor
-    public double getArmor() {
-        return Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_ARMOR)).getValue();
-    }
-
-    public void setArmor(int armorPoints) {
-        Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_ARMOR)).setBaseValue(Math.min(armorPoints, 20));
-    }
-
 
     // Classe Experience
     public static class Experience {
@@ -86,6 +107,10 @@ public abstract class PlayerClass {
             return exp;
         }
 
+        public void setAmount(int exp) {
+            this.exp = exp;
+        }
+
         public void add(int amount) {
             this.exp += amount;
         }
@@ -96,6 +121,10 @@ public abstract class PlayerClass {
 
         public int getLevel() {
             return (int) Math.floor(Math.sqrt(this.exp / 100.0));
+        }
+
+        public void setLevel(int level) {
+            this.exp = (int) Math.pow(level, 2) * 100;
         }
 
         public int getExpToNextLevel() {
@@ -115,6 +144,10 @@ public abstract class PlayerClass {
 
         public int getAmount() {
             return amount;
+        }
+
+        public void setAmount(int amount) {
+            this.amount = amount;
         }
 
         public void add(int amount) {

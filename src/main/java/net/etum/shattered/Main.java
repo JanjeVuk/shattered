@@ -2,13 +2,7 @@ package net.etum.shattered;
 
 import net.etum.shattered.listeners.Commands;
 import net.etum.shattered.listeners.Events;
-import net.etum.shattered.players.Obscurus;
-import net.etum.shattered.players.PlayerClass;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.UUID;
 
 public class Main extends JavaPlugin {
 

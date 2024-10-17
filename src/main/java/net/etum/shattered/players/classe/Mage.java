@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 
 public class Mage extends PlayerClass {
 
-    public Mage(Player player, Location lastLocation, int initialExp, int initialMoney) {
-        super(player, lastLocation, initialExp, initialMoney);
+    public Mage(Player player, int initialExp, int initialMoney, ClassType classType) {
+        super(player, initialExp, initialMoney, classType);
     }
 
 }
