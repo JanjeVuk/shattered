@@ -19,6 +19,16 @@ public class Mage extends PlayerClass {
 
         // Charge les attributs de la classe
         Main.getPlugin().getLogger().info("Charging mage data for player " + player.getName());
+
+        setClassType(ClassType.MAGE);
+    }
+
+    @Override
+    public void saveSubclassData(@NotNull YamlConfiguration config) {
+        super.saveSubclassData(config);
+
+        // Sauvegarde les attributs de la classe
+        Main.getPlugin().getLogger().info("Saving mage data for player " + player.getName());
     }
 
 }
