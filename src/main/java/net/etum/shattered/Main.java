@@ -4,6 +4,7 @@ import net.etum.shattered.listeners.Commands;
 import net.etum.shattered.listeners.Events;
 import net.etum.shattered.players.Obscurus;
 import net.etum.shattered.players.PlayerClass;
+import net.etum.shattered.players.classe.Knight;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -26,6 +27,9 @@ public class Main extends JavaPlugin {
 
         saveDefaultConfig();
         getLogger().info("Shattered has been enabled!");
+
+        Knight knight = new Knight(Bukkit.getPlayer(UUID.randomUUID()), null, 0, 10);
+
     }
 
     @Override

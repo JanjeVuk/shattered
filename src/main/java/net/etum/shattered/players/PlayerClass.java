@@ -1,31 +1,40 @@
 package net.etum.shattered.players;
 
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.attribute.Attribute;
-
 import java.util.Objects;
 
 public abstract class PlayerClass {
 
-    protected final Player player;
-    protected final Experience experience;
-    protected final Money money;
+    private final Player player; // Player ne devrait pas changer une fois défini
+    private Experience experience; // Mutable pour permettre la mise à jour
+    private Money money; // Mutable pour permettre la mise à jour
+    private String classe; // Mutable pour permettre la mise à jour
 
-
-    public PlayerClass(Player player, int initialExp, int initialMoney) {
-        this.player = player;
+    public PlayerClass(Player player, int initialExp, int initialMoney, String classe) {
+        this.player = Objects.requireNonNull(player, "Player cannot be null");
         this.experience = new Experience(initialExp);
         this.money = new Money(initialMoney);
+        this.classe = Objects.requireNonNull(classe, "Classe cannot be null");
     }
 
-    // Common methods for experience
+    public Player getPlayer() {
+        return player;
+    }
+
+    // Gestion de l'expérience
     public int getExp() {
         return experience.getAmount();
     }
 
     public void addExp(int exp) {
+        if (exp <= 0) {
+            throw new IllegalArgumentException("Experience to add must be positive");
+        }
         experience.add(exp);
+    }
+
+    public void setExperience(Experience experience) {
+        this.experience = Objects.requireNonNull(experience, "Experience cannot be null");
     }
 
     public int getLevel() {
@@ -36,50 +45,43 @@ public abstract class PlayerClass {
         return experience.getExpToNextLevel();
     }
 
-    // Common methods for money
+    // Gestion de l'argent
     public int getMoney() {
         return money.getAmount();
     }
 
     public void addMoney(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Money to add must be positive");
+        }
         money.add(amount);
     }
 
     public void removeMoney(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Money to remove must be positive");
+        }
         money.remove(amount);
     }
 
-    // Common methods for health
-    public double getHealth() {
-        return player.getHealth();
+    public void setMoney(Money money) {
+        this.money = Objects.requireNonNull(money, "Money cannot be null");
     }
 
-    public void setHealth(double health) {
-        double maxHealth = Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue();
-        player.setHealth(Math.min(health, maxHealth));
+    public String getClasse() {
+        return classe;
     }
 
-    public void increaseMaxHealth(double amount) {
-        double currentMaxHealth = Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getBaseValue();
-        Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(currentMaxHealth + amount);
+    public void setClasse(String classe) {
+        this.classe = Objects.requireNonNull(classe, "Classe cannot be null");
     }
 
-    // Common methods for armor
-    public double getArmor() {
-        return Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_ARMOR)).getValue();
-    }
-
-    public void setArmor(int armorPoints) {
-        Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_ARMOR)).setBaseValue(Math.min(armorPoints, 20));
-    }
-
-
-    // Classe Experience
+    // Gestion de l'expérience
     public static class Experience {
         private int exp;
 
         public Experience(int initialExp) {
-            this.exp = initialExp;
+            this.exp = Math.max(0, initialExp); // S'assure que l'expérience est positive
         }
 
         public int getAmount() {
@@ -87,7 +89,7 @@ public abstract class PlayerClass {
         }
 
         public void add(int amount) {
-            this.exp += amount;
+            this.exp += Math.max(0, amount);  // Évite les ajouts négatifs
         }
 
         public void remove(int amount) {
@@ -105,12 +107,12 @@ public abstract class PlayerClass {
         }
     }
 
-    // Classe Money
+    // Gestion de l'argent
     public static class Money {
         private int amount;
 
         public Money(int initialAmount) {
-            this.amount = initialAmount;
+            this.amount = Math.max(0, initialAmount);  // S'assure que l'argent est positif
         }
 
         public int getAmount() {
@@ -118,14 +120,27 @@ public abstract class PlayerClass {
         }
 
         public void add(int amount) {
-            this.amount += amount;
+            this.amount += Math.max(0, amount);  // Évite les ajouts négatifs
         }
 
         public void remove(int amount) {
+            if (amount < 0) {
+                throw new IllegalArgumentException("Cannot remove negative money");
+            }
             this.amount = Math.max(0, this.amount - amount);
         }
 
+        public void setAmount(int amount) {
+            if (amount < 0) {
+                throw new IllegalArgumentException("Money cannot be negative");
+            }
+            this.amount = amount;
+        }
+
         public boolean hasEnough(int amount) {
+            if (amount < 0) {
+                throw new IllegalArgumentException("Amount cannot be negative");
+            }
             return this.amount >= amount;
         }
 
