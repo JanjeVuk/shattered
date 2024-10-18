@@ -89,13 +89,14 @@ public class PlayerClass {
     }
 
 
-    // Méthodes de chargement et sauvegarde des données de la classe
+    // Méthodes de chargement et sauvegarde des données général du joueur
     public void loadSubclassData(@NotNull YamlConfiguration config) {
         setExp(config.getInt("exp", 0)); // Charge l'expérience
         setMoney(config.getInt("money", 0)); // Charge l'argent
         setClassType(ClassType.NONE); // Charge le type de classe
     }
 
+    // Méthodes de chargement et sauvegarde des données général du joueur
     public void saveSubclassData(@NotNull YamlConfiguration config) {
         config.set("exp", getExp()); // Sauvegarde l'expérience
         config.set("money", getMoney()); // Sauvegarde l'argent
