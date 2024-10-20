@@ -2,7 +2,6 @@ package net.etum.shattered.players.classe;
 
 import net.etum.shattered.Main;
 import net.etum.shattered.players.PlayerClass;
-import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

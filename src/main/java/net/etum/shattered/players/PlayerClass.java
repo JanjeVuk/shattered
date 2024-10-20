@@ -2,7 +2,10 @@ package net.etum.shattered.players;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class PlayerClass {
 
@@ -89,6 +92,9 @@ public class PlayerClass {
     }
 
 
+
+
+
     // Méthodes de chargement et sauvegarde des données général du joueur
     public void loadSubclassData(@NotNull YamlConfiguration config) {
         setExp(config.getInt("exp", 0)); // Charge l'expérience
@@ -103,7 +109,7 @@ public class PlayerClass {
         config.set("classe", getClassType().toString()); // Sauvegarde le type de classe
     }
 
-    // Classe Experience
+    // Class Experience
     public static class Experience {
         private int exp;
 
@@ -142,7 +148,7 @@ public class PlayerClass {
         }
     }
 
-    // Classe Money
+    // Class Money
     public static class Money {
         private int amount;
 

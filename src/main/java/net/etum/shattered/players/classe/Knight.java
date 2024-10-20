@@ -5,19 +5,12 @@ import net.etum.shattered.players.PlayerClass;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Knight extends PlayerClass implements Listener {
+
 
 
     public Knight(Player player, int initialExp, int initialMoney, ClassType classType) {
@@ -25,10 +18,7 @@ public class Knight extends PlayerClass implements Listener {
     }
 
 
-    // ability of the knight
-
-
-
+    //
 
 
 

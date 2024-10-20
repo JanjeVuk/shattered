@@ -111,6 +111,10 @@ public class PlayerDataManager {
         return dataPlayers.get(player.getUniqueId());
     }
 
+    public static String getpath(){
+        return path;
+    }
+
     public static void deleteDataFromHash(Player player) {
         if (dataPlayers.remove(player.getUniqueId()) != null) {
             Main.getPlugin().getLogger().info("Data removed from memory for player " + player.getName());

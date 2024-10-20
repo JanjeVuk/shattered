@@ -22,7 +22,7 @@ public class ConnexionManager implements Listener {
         PlayerDataManager.loadData(player);
 
         // message pour indiquer qu'un joueur a rejoint le serveur
-        event.joinMessage(Component.text("&7[&a+&7] &f" + player.getName()));
+        event.joinMessage(Component.text("§7[§a+§7] §f" + player.getName()));
 
     }
 
@@ -37,7 +37,7 @@ public class ConnexionManager implements Listener {
         PlayerDataManager.deleteDataFromHash(player);
 
         // message pour indiquer qu'un joueur a rejoint le serveur
-        event.quitMessage(Component.text("&7[&c-&7] &f" + player.getName()));
+        event.quitMessage(Component.text("§7[§c-§7] §f" + player.getName()));
     }
 
     @EventHandler
