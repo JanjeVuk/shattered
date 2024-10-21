@@ -3,7 +3,7 @@ package net.etum.shattered.players.manager;
 import net.etum.shattered.Main;
 import net.etum.shattered.players.PlayerClass;
 import net.etum.shattered.players.PlayerClass.ClassType;
-import net.etum.shattered.players.classe.Knight;
+import net.etum.shattered.players.classe.Knight.Knight;
 import net.etum.shattered.players.classe.Mage;
 import net.etum.shattered.players.classe.Obscurus;
 import net.etum.shattered.players.classe.Rogue;

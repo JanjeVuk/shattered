@@ -1,15 +1,16 @@
-package net.etum.shattered.players.classe;
+package net.etum.shattered.players.classe.Knight;
 
 import net.etum.shattered.Main;
 import net.etum.shattered.players.PlayerClass;
-import org.bukkit.Material;
+import net.etum.shattered.players.manager.PlayerDataManager;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class Knight extends PlayerClass implements Listener {
+public class Knight extends PlayerClass {
 
 
 
@@ -18,7 +19,7 @@ public class Knight extends PlayerClass implements Listener {
     }
 
 
-    //
+
 
 
 

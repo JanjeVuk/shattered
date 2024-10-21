@@ -15,6 +15,9 @@ public class PlayerClass {
     protected final Money money;
     protected ClassType classType;
 
+    public PlayerClass() {
+    }
+
     public enum ClassType {
         MAGE,
         KNIGHT,
