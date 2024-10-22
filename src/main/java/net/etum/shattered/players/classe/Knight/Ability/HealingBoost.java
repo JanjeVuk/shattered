@@ -1,4 +1,4 @@
-package net.etum.shattered.players.classe.Knight;
+package net.etum.shattered.players.classe.Knight.Ability;
 
 import net.etum.shattered.players.PlayerClass;
 import net.etum.shattered.players.manager.PlayerDataManager;
@@ -7,10 +7,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 
-public class KnightAbility implements Listener {
+public class HealingBoost implements Listener {
 
 
-    //passif
+    /*
+     * Le Chevalier bénéficie d'une augmentation passive de l'efficacité des soins,
+     * qui varie en fonction de son niveau ou d'améliorations spécifiques.
+     * Cette capacité peut être adaptée pour offrir des bonus plus importants à mesure que le joueur progresse.
+     */
     @EventHandler
     public void onRegenPassifPlayer(EntityRegainHealthEvent event) {
         if (!(event.getEntity() instanceof Player)) {

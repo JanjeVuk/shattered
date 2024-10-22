@@ -24,7 +24,6 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
         getLogger().info("Shattered has been disabled!");
     }
 

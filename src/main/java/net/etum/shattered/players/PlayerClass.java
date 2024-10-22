@@ -2,21 +2,11 @@ package net.etum.shattered.players;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public class PlayerClass {
 
 
-    protected final Player player;
-    protected final Experience experience;
-    protected final Money money;
-    protected ClassType classType;
-
-    public PlayerClass() {
-    }
 
     public enum ClassType {
         MAGE,
@@ -34,15 +24,17 @@ public class PlayerClass {
         }
     }
 
+    protected final Player player;
+    protected int exp;
+    protected int money;
+    protected ClassType classType;
 
-    public PlayerClass(Player player, int initialExp, int initialMoney, ClassType classType) {
+    public PlayerClass(Player player, int exp, int money, ClassType classType) {
         this.player = player;
-        this.experience = new Experience(initialExp);
-        this.money = new Money(initialMoney);
+        this.exp = exp;
+        this.money = money;
         this.classType = classType;
     }
-
-
 
     public ClassType getClassType() {
         return classType;
@@ -52,51 +44,22 @@ public class PlayerClass {
         this.classType = classType;
     }
 
-    // Méthodes communes pour l'expérience
+
     public int getExp() {
-        return experience.getAmount();
+        return exp;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 
     public void setExp(int exp) {
-        experience.setAmount(exp);
+        this.exp = exp;
     }
-
-    public void addExp(int exp) {
-        experience.add(exp);
-    }
-
-    public int getLevel() {
-        return experience.getLevel();
-    }
-
-    public void setLevel(int level) {
-        experience.setLevel(level);
-    }
-
-    public int getExpToNextLevel() {
-        return experience.getExpToNextLevel();
-    }
-
-    // Méthodes communes pour l'argent
-    public int getMoney() {
-        return money.getAmount();
-    }
-
-    public void setMoney(int amount) {
-        money.setAmount(amount);
-    }
-
-    public void addMoney(int amount) {
-        money.add(amount);
-    }
-
-    public void removeMoney(int amount) {
-        money.remove(amount);
-    }
-
-
-
-
 
     // Méthodes de chargement et sauvegarde des données général du joueur
     public void loadSubclassData(@NotNull YamlConfiguration config) {
@@ -112,75 +75,5 @@ public class PlayerClass {
         config.set("classe", getClassType().toString()); // Sauvegarde le type de classe
     }
 
-    // Class Experience
-    public static class Experience {
-        private int exp;
 
-        public Experience(int initialExp) {
-            this.exp = initialExp;
-        }
-
-        public int getAmount() {
-            return exp;
-        }
-
-        public void setAmount(int exp) {
-            this.exp = exp;
-        }
-
-        public void add(int amount) {
-            this.exp += amount;
-        }
-
-        public void remove(int amount) {
-            this.exp = Math.max(0, this.exp - amount);
-        }
-
-        public int getLevel() {
-            return (int) Math.floor(Math.sqrt(this.exp / 100.0));
-        }
-
-        public void setLevel(int level) {
-            this.exp = (int) Math.pow(level, 2) * 100;
-        }
-
-        public int getExpToNextLevel() {
-            int currentLevel = getLevel();
-            int nextLevelExp = (int) Math.pow(currentLevel + 1, 2) * 100;
-            return nextLevelExp - this.exp;
-        }
-    }
-
-    // Class Money
-    public static class Money {
-        private int amount;
-
-        public Money(int initialAmount) {
-            this.amount = initialAmount;
-        }
-
-        public int getAmount() {
-            return amount;
-        }
-
-        public void setAmount(int amount) {
-            this.amount = amount;
-        }
-
-        public void add(int amount) {
-            this.amount += amount;
-        }
-
-        public void remove(int amount) {
-            this.amount = Math.max(0, this.amount - amount);
-        }
-
-        public boolean hasEnough(int amount) {
-            return this.amount >= amount;
-        }
-
-        public boolean isBankrupt() {
-            return this.amount == 0;
-        }
-    }
 }

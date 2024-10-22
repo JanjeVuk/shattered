@@ -2,8 +2,7 @@ package net.etum.shattered.listeners;
 
 import net.etum.shattered.Main;
 import net.etum.shattered.manager.ConnexionManager;
-import net.etum.shattered.players.classe.Knight.Knight;
-import net.etum.shattered.players.classe.Knight.KnightAbility;
+import net.etum.shattered.players.classe.Knight.Ability.HealingBoost;
 import org.bukkit.plugin.PluginManager;
 
 public class Events {
@@ -21,7 +20,7 @@ public class Events {
     }
 
     private void ClassEvents(PluginManager pm) {
-        pm.registerEvents(new KnightAbility(), Main.getPlugin());
+        pm.registerEvents(new HealingBoost(), Main.getPlugin());
     }
 
 }
