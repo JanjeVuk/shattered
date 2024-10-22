@@ -1,12 +1,12 @@
 package net.etum.shattered.players.classe;
 
 import net.etum.shattered.Main;
-import net.etum.shattered.players.PlayerClass;
+import net.etum.shattered.players.Hero;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class Mage extends PlayerClass {
+public class Mage extends Hero {
 
     public Mage(Player player, int initialExp, int initialMoney, ClassType classType) {
         super(player, initialExp, initialMoney, classType);

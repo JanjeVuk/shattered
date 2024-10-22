@@ -1,16 +1,12 @@
 package net.etum.shattered.players.classe.Knight;
 
 import net.etum.shattered.Main;
-import net.etum.shattered.players.PlayerClass;
-import net.etum.shattered.players.manager.PlayerDataManager;
+import net.etum.shattered.players.Hero;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class Knight extends PlayerClass {
+public class Knight extends Hero {
 
 
 

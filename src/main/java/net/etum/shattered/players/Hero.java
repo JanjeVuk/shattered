@@ -4,7 +4,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class PlayerClass {
+public class Hero {
 
 
 
@@ -29,7 +29,7 @@ public class PlayerClass {
     protected int money;
     protected ClassType classType;
 
-    public PlayerClass(Player player, int exp, int money, ClassType classType) {
+    public Hero(Player player, int exp, int money, ClassType classType) {
         this.player = player;
         this.exp = exp;
         this.money = money;

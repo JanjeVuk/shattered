@@ -1,6 +1,6 @@
 package net.etum.shattered.players.classe.Knight.Ability;
 
-import net.etum.shattered.players.PlayerClass;
+import net.etum.shattered.players.Hero;
 import net.etum.shattered.players.manager.PlayerDataManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,8 +24,8 @@ public class HealingBoost implements Listener {
         Player player = (Player) event.getEntity();
 
         // Vérifie si le joueur est de classe Knight
-        PlayerClass playerData = PlayerDataManager.getPlayerData(player);
-        if (playerData.getClassType() != PlayerClass.ClassType.KNIGHT) {
+        Hero playerData = PlayerDataManager.getPlayerData(player);
+        if (playerData.getClassType() != Hero.ClassType.KNIGHT) {
             return;
         }
 

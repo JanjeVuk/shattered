@@ -1,8 +1,8 @@
 package net.etum.shattered.players.manager;
 
 import net.etum.shattered.Main;
-import net.etum.shattered.players.PlayerClass;
-import net.etum.shattered.players.PlayerClass.ClassType;
+import net.etum.shattered.players.Hero;
+import net.etum.shattered.players.Hero.ClassType;
 import net.etum.shattered.players.classe.Knight.Knight;
 import net.etum.shattered.players.classe.Mage;
 import net.etum.shattered.players.classe.Obscurus;
@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public class PlayerDataManager {
 
-    private static final HashMap<UUID, PlayerClass> dataPlayers = new HashMap<>();
+    private static final HashMap<UUID, Hero> dataPlayers = new HashMap<>();
     private static final String path = "plugins/Shattered/data/players/";
 
     public static void createData(Player player) {
@@ -60,7 +60,7 @@ public class PlayerDataManager {
             return;
         }
 
-        PlayerClass playerClass = createPlayerClassInstance(player, playerClassType);
+        Hero playerClass = createPlayerClassInstance(player, playerClassType);
         try {
             playerClass.loadSubclassData(config);
             dataPlayers.put(player.getUniqueId(), playerClass);
@@ -70,7 +70,7 @@ public class PlayerDataManager {
         }
     }
 
-    private static PlayerClass createPlayerClassInstance(Player player, ClassType classType) {
+    private static Hero createPlayerClassInstance(Player player, ClassType classType) {
         switch (classType) {
             case KNIGHT:
                 return new Knight(player, 0, 50, classType);
@@ -81,7 +81,7 @@ public class PlayerDataManager {
             case ROGUE:
                 return new Rogue(player, 0, 50, classType);
             default:
-                return new PlayerClass(player, 0, 50, classType);
+                return new Hero(player, 0, 50, classType);
         }
     }
 
@@ -93,7 +93,7 @@ public class PlayerDataManager {
         }
 
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-        PlayerClass playerData = getPlayerData(player);
+        Hero playerData = getPlayerData(player);
         if (playerData != null) {
             try {
                 playerData.saveSubclassData(config);
@@ -107,7 +107,7 @@ public class PlayerDataManager {
         }
     }
 
-    public static PlayerClass getPlayerData(Player player) {
+    public static Hero getPlayerData(Player player) {
         return dataPlayers.get(player.getUniqueId());
     }
 
@@ -124,7 +124,7 @@ public class PlayerDataManager {
     }
 
     private static void initializePlayerClass(Player player, File file) throws IOException {
-        PlayerClass playerClass = new PlayerClass(player, 0, 50, ClassType.NONE);
+        Hero playerClass = new Hero(player, 0, 50, ClassType.NONE);
         dataPlayers.put(player.getUniqueId(), playerClass);
 
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
