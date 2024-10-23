@@ -1,4 +1,4 @@
-package net.etum.shattered.players.classe.Knight.Ability;
+package net.etum.shattered.players.Ability;
 
 import net.etum.shattered.players.Hero;
 import net.etum.shattered.players.manager.PlayerDataManager;
@@ -7,8 +7,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 
-public class HealingBoost implements Listener {
+public class HealingBoost extends Ability implements Listener {
 
+
+    public HealingBoost(String name, String description, Boolean enabled) {
+        super(name, description, enabled);
+    }
 
     /*
      * Le Chevalier bénéficie d'une augmentation passive de l'efficacité des soins,
@@ -24,10 +28,7 @@ public class HealingBoost implements Listener {
         Player player = (Player) event.getEntity();
 
         // Vérifie si le joueur est de classe Knight
-        Hero playerData = PlayerDataManager.getPlayerData(player);
-        if (playerData.getClassType() != Hero.ClassType.KNIGHT) {
-            return;
-        }
+
 
         // Base de la régénération (20% du montant original)
         double regenAmount = event.getAmount() * 0.2;

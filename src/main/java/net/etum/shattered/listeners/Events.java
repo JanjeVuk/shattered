@@ -2,7 +2,7 @@ package net.etum.shattered.listeners;
 
 import net.etum.shattered.Main;
 import net.etum.shattered.manager.ConnexionManager;
-import net.etum.shattered.players.classe.Knight.Ability.HealingBoost;
+import net.etum.shattered.players.Ability.HealingBoost;
 import org.bukkit.plugin.PluginManager;
 
 public class Events {

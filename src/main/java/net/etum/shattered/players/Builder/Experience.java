@@ -28,7 +28,7 @@ public class Experience {
         try {
             temp = Math.max(0, temp - amount);
         }catch (Exception e) {
-            Bukkit.getLogger().warning("Failed to remove experience amount");
+            System.out.println("Failed to remove experience amount");
         }
 
         this.exp = temp;
@@ -44,7 +44,7 @@ public class Experience {
         try {
             temp = (int) Math.pow(level, 2) * 100;
         }catch (Exception e) {
-            Bukkit.getLogger().warning("Failed to set experience level");
+            System.out.println("Failed to set experience level");
         }
 
         this.exp = temp;

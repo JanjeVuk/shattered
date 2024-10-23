@@ -1,7 +1,5 @@
 package net.etum.shattered.players.Builder;
 
-import org.bukkit.Bukkit;
-
 public class Money {
     private int amount;
 
@@ -27,7 +25,7 @@ public class Money {
         try {
             temp = Math.max(0, temp - amount);
         }catch (Exception e) {
-            Bukkit.getLogger().warning("Failed to remove " + amount + " from money.");
+            System.out.println("Failed to remove " + amount + " from money.");
             return;
         }
 
@@ -38,7 +36,4 @@ public class Money {
         return this.amount >= amount;
     }
 
-    public boolean isBankrupt() {
-        return this.amount == 0;
-    }
 }
