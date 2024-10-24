@@ -10,8 +10,8 @@ import org.bukkit.event.entity.EntityRegainHealthEvent;
 public class HealingBoost extends Ability implements Listener {
 
 
-    public HealingBoost(String name, String description, Boolean enabled) {
-        super(name, description, enabled);
+    public HealingBoost() {
+        super("name", "description", true);
     }
 
     /*
@@ -26,8 +26,10 @@ public class HealingBoost extends Ability implements Listener {
         }
 
         Player player = (Player) event.getEntity();
+        if(!PlayerDataManager.getPlayerData(player).hasAbility(this, player)){
+            return;
+        }
 
-        // Vérifie si le joueur est de classe Knight
 
 
         // Base de la régénération (20% du montant original)

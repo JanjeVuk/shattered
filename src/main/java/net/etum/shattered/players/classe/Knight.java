@@ -1,4 +1,4 @@
-package net.etum.shattered.players.classe.Knight;
+package net.etum.shattered.players.classe;
 
 import net.etum.shattered.Main;
 import net.etum.shattered.players.Hero;
